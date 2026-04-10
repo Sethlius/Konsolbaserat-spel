@@ -6,12 +6,15 @@ bool isRunning = true;
 bool[] whichCoise = [false, false];
 bool enemtTurn = false;
 bool attackTurn = false;
+bool[] whatKindOfItem = [false, false];
 
 int moveInMenue = 0;
 int attackMenuMove = 0;
 int enemyAtack = 0;
 int level = 1;
 int enemylevel = 1;
+int attackItemChoise = 0;
+int choosItem = 0;
 
 
 int[,] attackDamage = { { 110, 80, 90, 60 }, //water type
@@ -59,6 +62,7 @@ float[,] typeChart = { { 0.5f, 0.5f, 2, 1, 1, 1, 1, 1, 2, 2, 1, 1, 0.5f, 1, 1, 1
                     };
 float yourNomekopHelth;
 float enemyNomekopHealt;
+float[] attackItemMultipliers = { 1, 1.25f, 1,5f };
 float[,] nomekopHelth = {
     { 71.1f, 1, 1, 1, 1, 1 }, //water type (0)
     { 72.9f, 1, 1, 1, 1, 1 },//grass type (1)
@@ -376,8 +380,8 @@ while (isRunning)
         damageDelt = damageDelt / 5 + 2;
         damageDelt = damageDelt * attackDamage[choiceUser, attackMenuMove];
         damageDelt = damageDelt * yourNomekopStats[0] / enmeyNomekopnStats[1];
-        damageDelt = damageDelt / 50 + 2;
-        damageDelt = damageDelt * weatherConditions[weatherConditionRandom];
+        damageDelt = damageDelt / 50;
+        damageDelt = 2 + damageDelt * weatherConditions[weatherConditionRandom];
         Console.WriteLine($"You used {nomekopAttack[choiceUser, attackMenuMove]}");
         if (criticalHit > 8)
         {
@@ -413,7 +417,7 @@ while (isRunning)
             enemyDamage = enemyDamage * attackDamage[typeEnemy, enemyAtack];
             enemyDamage = enemyDamage * enmeyNomekopnStats[0] / yourNomekopStats[1];
             enemyDamage = enemyDamage / 50 + 2;
-            enemyDamage = enemyDamage * weatherConditions[weatherConditionRandom];
+            enemyDamage = enemyDamage * weatherConditions[weatherConditionRandom] * attackItemMultipliers[attackItemChoise];
             Console.WriteLine($"The enemy used {nomekopAttack[typeEnemy, enemyAtack]}");
             if (enemyCritHit > 8)
             {
@@ -462,7 +466,7 @@ while (isRunning)
                 attackDamage[i, 2] += level;
                 attackDamage[i, 3] += level;
             }
-            //gives enemy new pokmeon if it faints
+            //gives enemy new Nomekop if it faints
             typeEnemy = enemyType.Next(0, 17); 
             enemyRandomStat = enemyType.Next(0, 5);
             enemyNomekopHealt = nomekopHelth[typeEnemy,enemyRandomStat] + enemylevel;
@@ -478,6 +482,7 @@ while (isRunning)
         ConsoleKey noUse = Console.ReadKey(true).Key;
         damageDelt = 0;
         enemyDamage = 0;
+        attackItemChoise = 0;
         attackTurn = false;
     }
 
@@ -485,8 +490,63 @@ while (isRunning)
 
     while (whichCoise[1]) //itesm menu 
     {
+        switch (choosItem)
+        {
+            case 0:
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Attack items");
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("Helth items");
+                break;
+            case 1:
+                Console.Clear();
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("Attack items");
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Health items");
+                break;
+        }
+
+        ConsoleKey itemsMenuMove = Console.ReadKey(true).Key;
+
+        if (itemsMenuMove == ConsoleKey.UpArrow)
+        {
+            choosItem--;
+        }
+        if (itemsMenuMove == ConsoleKey.DownArrow)
+        {
+            choosItem++;
+        }
+
+        Console.WriteLine(choosItem.ToString());
+
+        if (choosItem < 0)
+        {
+            choosItem = 1;
+        }
+        else if (choosItem > 1)
+        {
+            choosItem = 0;
+        }
+
+        if (itemsMenuMove == ConsoleKey.Enter)
+        {
+            whatKindOfItem[choosItem] = true;
+            whichCoise[1] = false;
+        }
+    }
+
+    while (whatKindOfItem[0] == true) 
+    {
         Console.WriteLine("You are stuck here now lol :3");
     }
+
+    while (whatKindOfItem[1] == true) 
+    {
+        Console.WriteLine("You are stuck here now lol :3");
+    }
+
 }
 
 
