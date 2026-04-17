@@ -63,7 +63,6 @@ float[,] typeChart = { { 0.5f, 0.5f, 2, 1, 1, 1, 1, 1, 2, 2, 1, 1, 0.5f, 1, 1, 1
                     };
 float yourNomekopHelth;
 float enemyNomekopHealt;
-float[] attackItemMultipliers = { 1.25f, 1.5f };
 float[] yourNomekopStats = { 0, 1 }; //0 is for attackstat and 1 is for defencstat;
 float[] enmeyNomekopnStats = { 0, 1 };
 
@@ -115,6 +114,10 @@ string[,] nomekopAttack = { { "Hydro pump", "Watterfall", "Surf", "Water Pulse" 
                             { "Close Combat", "Submission", "Aura Sphere", "Low Sweep" } //Fighting type
                           };
 
+Items[] items = {
+    new Items("Item1", 1.25f),
+    new Items("Item2", 1.5f)
+};
 
 NomekopType[] types = {
     new NomekopType("Water type",    ConsoleColor.DarkCyan, /*Health*/ [71.1f, 1f, 1f, 1f, 1f, 1f], /*Attackstat*/ [76.5f, 1, 1, 1, 1, 1], /*DefenceStat*/ [74.7f, 1, 1, 1, 1, 1]), //0
@@ -211,7 +214,7 @@ while (isRunning)
 
     if (attackItemActivated == true)
     {
-        Console.WriteLine($"Attakc item has been used, your multiplier is: {attackItemMultipliers[attackItemChoise]}");
+        Console.WriteLine($"{items[attackItemChoise].itemName} has been used, your multiplier is: {items[attackItemChoise].attackItemMultipliers}");
     }
 
 
@@ -341,7 +344,7 @@ while (isRunning)
         damageDelt = damageDelt * multiplierDamageRandom;
         if (attackItemActivated == true)
         {
-            damageDelt = damageDelt * attackItemMultipliers[attackItemChoise];
+            damageDelt = damageDelt * items[attackItemChoise].attackItemMultipliers;
         }
         damageDelt = damageDelt * typeChart[choiceUser, typeEnemy];
         if (typeChart[choiceUser, typeEnemy] == 0.5)
@@ -371,7 +374,7 @@ while (isRunning)
             enemyDamage = enemyDamage * attackDamage[typeEnemy, enemyAtack];
             enemyDamage = enemyDamage * enmeyNomekopnStats[0] / yourNomekopStats[1];
             enemyDamage = enemyDamage / 50 + 2;
-            enemyDamage = enemyDamage * weatherConditions[weatherConditionRandom] * attackItemMultipliers[attackItemChoise];
+            enemyDamage = enemyDamage * weatherConditions[weatherConditionRandom] * items[attackItemChoise].attackItemMultipliers;
             Console.WriteLine($"The enemy used {nomekopAttack[typeEnemy, enemyAtack]}");
             if (enemyCritHit > 8)
             {
@@ -494,13 +497,13 @@ while (isRunning)
     while (whatKindOfItem[0] == true) 
     {
         Console.Clear();
-        for (int i = 0; i < attackItemMultipliers.Length; i++)
+        for (int i = 0; i < 2; i++)
         {
             if (i == attackItemChoise)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
             }
-            Console.WriteLine(attackItemMultipliers[i]);
+            Console.WriteLine($"{items[i].itemName}, multiplier {items[i].attackItemMultipliers}");
             Console.ForegroundColor = ConsoleColor.White;
         }
 
@@ -538,7 +541,6 @@ while (isRunning)
 
 }
 
-
 class NomekopType(string Name, ConsoleColor Color, float[] Health, float[] StatAttack, float[] StatDefence)
 {
     // GNU GPL 3.0 LICENCE https://www.gnu.org/licenses/gpl-3.0.en.html
@@ -558,4 +560,10 @@ class NomekopType(string Name, ConsoleColor Color, float[] Health, float[] StatA
         Console.WriteLine($"{index}: {name}");
         Console.ForegroundColor = prevColor;
     }
+}
+
+class Items(string ItemName, float AttackItemMultipliers)
+{
+    public string itemName = ItemName;
+    public float attackItemMultipliers = AttackItemMultipliers;
 }
