@@ -64,25 +64,6 @@ float yourNomekopHelth;
 float enemyNomekopHealt;
 float[] attackItemMultipliers = { 1, 1.25f, 1,5f };
 
-float[,] attackStats = {  { 76.5f, 1, 1, 1, 1, 1 }, //water type attack
-                          { 77, 1, 1, 1, 1, 1 }, //grass type attack
-                          { 84.8f, 1, 1, 1, 1, 1 }, //fire type attack
-                          { 75.5f, 1, 1, 1, 1, 1 }, //electric type attack
-                          { 71, 1, 1, 1, 1, 1 }, //bug type attack
-                          { 81.6f, 1, 1, 1, 1, 1 }, //flying type attack
-                          { 74.4f, 1, 1, 1, 1, 1 }, //poison type attack
-                          { 75.6f, 1, 1, 1, 1, 1 }, //normal type attack
-                          { 91.4f, 1, 1, 1, 1, 1 }, //rock type attack
-                          { 91.2f, 1, 1, 1, 1, 1 }, //ground type attack
-                          { 95.2f, 1, 1, 1, 1, 1 }, //steel type attack 
-                          { 88.2f, 1, 1, 1, 1, 1 }, //ice type attack
-                          { 99.2f, 1, 1, 1, 1, 1 }, //dragon type attack
-                          { 70, 1, 1, 1, 1, 1 }, //fairy type attack
-                          { 94.8f, 1, 1, 1, 1, 1 }, //dark type attack
-                          { 79.4f, 1, 1, 1, 1, 1 }, //ghost type attack
-                          { 76, 1, 1, 1, 1, 1 }, //psychich type attack
-                          { 108.8f, 1, 1, 1, 1, 1 }  //fighting type attack
-                       };
 
 float[,] defenceStats = { { 74.7f, 1, 1, 1, 1, 1 }, //water type defence
                           { 73.8f, 1, 1, 1, 1, 1 }, //grass type defence
@@ -156,24 +137,24 @@ string[,] nomekopAttack = { { "Hydro pump", "Watterfall", "Surf", "Water Pulse" 
 
 
 NomekopType[] types = {
-    new NomekopType("Water type",    ConsoleColor.DarkCyan, [71.1f, 1f, 1f, 1f, 1f, 1f]), //0
-    new NomekopType("Grass type",    ConsoleColor.DarkGreen, [72.9f, 1, 1, 1, 1, 1]), //1
-    new NomekopType("Fire type",     ConsoleColor.Red, [71.3f, 1, 1, 1, 1, 1 ]), //2
-    new NomekopType("Electric type", ConsoleColor.Yellow, [66.9f, 1, 1, 1, 1, 1]), //3
-    new NomekopType("Bug type",      ConsoleColor.Green, [56.9f, 1, 1, 1, 1, 1]), //4
-    new NomekopType("Flying type",   ConsoleColor.Blue, [72.4f, 1, 1, 1, 1, 1]), //5
-    new NomekopType("Poison type",   ConsoleColor.DarkMagenta, [69.1f, 1, 1, 1, 1, 1]), //6
-    new NomekopType("Normal type",   ConsoleColor.White, [77.5f, 1, 1, 1, 1, 1]), //7
-    new NomekopType("Rock type",     ConsoleColor.Gray, [69.3f, 1, 1, 1, 1, 1]), //8
-    new NomekopType("Ground type",   ConsoleColor.DarkGray, [77.9f, 1, 1, 1, 1, 1]), //9
-    new NomekopType("Steel type",    ConsoleColor.DarkYellow, [70.5f, 1, 1, 1, 1, 1]), //10
-    new NomekopType("Ice type",      ConsoleColor.Cyan, [80.3f, 1, 1, 1, 1, 1]), //11
-    new NomekopType("Dragon type",   ConsoleColor.DarkBlue, [88.7f, 1, 1, 1, 1, 1]), //12
-    new NomekopType("Fairy type",    ConsoleColor.Magenta, [67.8f, 1, 1, 1, 1, 1]), //13
-    new NomekopType("Dark type",     ConsoleColor.DarkBlue, [75.1f, 1, 1, 1, 1, 1]), //14
-    new NomekopType("Ghost type",    ConsoleColor.DarkMagenta, [66.5f, 1, 1, 1, 1, 1]), //15
-    new NomekopType("Psychich type", ConsoleColor.Magenta, [75.2f, 1, 1, 1, 1, 1]), //16
-    new NomekopType("Fighting type", ConsoleColor.DarkRed, [77.9f, 1, 1, 1, 1, 1]) //17
+    new NomekopType("Water type",    ConsoleColor.DarkCyan, /*Health*/ [71.1f, 1f, 1f, 1f, 1f, 1f], /*Attackstat*/ [76.5f, 1, 1, 1, 1, 1]), //0
+    new NomekopType("Grass type",    ConsoleColor.DarkGreen, /*Health*/ [72.9f, 1, 1, 1, 1, 1], /*Attackstat*/ [77, 1, 1, 1, 1, 1]), //1
+    new NomekopType("Fire type",     ConsoleColor.Red, /*Health*/ [71.3f, 1, 1, 1, 1, 1 ], /*Attackstat*/ [84.8f, 1, 1, 1, 1, 1]), //2
+    new NomekopType("Electric type", ConsoleColor.Yellow, /*Health*/ [66.9f, 1, 1, 1, 1, 1], /*Attackstat*/ [75.5f, 1, 1, 1, 1, 1 ]), //3
+    new NomekopType("Bug type",      ConsoleColor.Green, /*Health*/ [56.9f, 1, 1, 1, 1, 1], /*Attackstat*/ [71, 1, 1, 1, 1, 1]), //4
+    new NomekopType("Flying type",   ConsoleColor.Blue, /*Health*/ [72.4f, 1, 1, 1, 1, 1], /*Attackstat*/ [81.6f, 1, 1, 1, 1, 1]), //5
+    new NomekopType("Poison type",   ConsoleColor.DarkMagenta, /*Health*/ [69.1f, 1, 1, 1, 1, 1], /*Attackstat*/ [74.4f, 1, 1, 1, 1, 1 ]), //6
+    new NomekopType("Normal type",   ConsoleColor.White, /*Health*/ [77.5f, 1, 1, 1, 1, 1], /*Attackstat*/ [75.6f, 1, 1, 1, 1, 1]), //7
+    new NomekopType("Rock type",     ConsoleColor.Gray, /*Health*/ [69.3f, 1, 1, 1, 1, 1], /*Attackstat*/ [91.4f, 1, 1, 1, 1, 1]), //8
+    new NomekopType("Ground type",   ConsoleColor.DarkGray, /*Health*/ [77.9f, 1, 1, 1, 1, 1], /*Attackstat*/ [91.2f, 1, 1, 1, 1, 1]), //9
+    new NomekopType("Steel type",    ConsoleColor.DarkYellow, /*Health*/ [70.5f, 1, 1, 1, 1, 1], /*Attackstat*/ [95.2f, 1, 1, 1, 1, 1]), //10
+    new NomekopType("Ice type",      ConsoleColor.Cyan, /*Health*/ [80.3f, 1, 1, 1, 1, 1], /*Attackstat*/ [88.2f, 1, 1, 1, 1, 1]), //11
+    new NomekopType("Dragon type",   ConsoleColor.DarkBlue, /*Health*/ [88.7f, 1, 1, 1, 1, 1], /*Attackstat*/ [99.2f, 1, 1, 1, 1, 1]), //12
+    new NomekopType("Fairy type",    ConsoleColor.Magenta, /*Health*/ [67.8f, 1, 1, 1, 1, 1], /*Attackstat*/ [70, 1, 1, 1, 1, 1]), //13
+    new NomekopType("Dark type",     ConsoleColor.DarkBlue, /*Health*/ [75.1f, 1, 1, 1, 1, 1], /*Attackstat*/ [94.8f, 1, 1, 1, 1, 1]), //14
+    new NomekopType("Ghost type",    ConsoleColor.DarkMagenta, /*Health*/ [66.5f, 1, 1, 1, 1, 1], /*Attackstat*/ [78.9f, 1, 1, 1, 1, 1]), //15
+    new NomekopType("Psychich type", ConsoleColor.Magenta, /*Health*/ [75.2f, 1, 1, 1, 1, 1], /*Attackstat*/ [76.7f, 1, 1, 1, 1, 1]), //16
+    new NomekopType("Fighting type", ConsoleColor.DarkRed, /*Health*/ [77.9f, 1, 1, 1, 1, 1], /*Attackstat*/ [108.8f, 1, 1, 1, 1, 1]) //17
 };
 
 Random enemyType = new Random();
@@ -198,17 +179,17 @@ types[choiceUser].Print(choiceUser);
 
 for (int i = 0; i <= 5 ; i++)
 {
-    Console.WriteLine($"{nomekop[choiceUser, i]}: \n attack stat: {attackStats[choiceUser,i]} \n defence stat: {defenceStats[choiceUser,i]} \n hp: {types[choiceUser].health[i]} \n");
+    Console.WriteLine($"{nomekop[choiceUser, i]}: \n attack stat: {types[choiceUser].statAttack[i]} \n defence stat: {defenceStats[choiceUser,i]} \n hp: {types[choiceUser].health[i]} \n");
 }
 
 string nomekopChoicse = Console.ReadLine(); //for getting stats
 int chosenNomekop = int.Parse(nomekopChoicse);
 
-yourNomekopStats[0] = attackStats[choiceUser, chosenNomekop];
+yourNomekopStats[0] = types[choiceUser].statAttack[chosenNomekop];
 yourNomekopStats[1] = defenceStats[choiceUser, chosenNomekop];
 yourNomekopHelth = types[choiceUser].health[chosenNomekop];
 
-enmeyNomekopnStats[0] = attackStats[typeEnemy, enemyRandomStat];
+enmeyNomekopnStats[0] = types[typeEnemy].statAttack[enemyRandomStat];
 enmeyNomekopnStats[1] = defenceStats[typeEnemy, enemyRandomStat];
 
 Console.WriteLine("Press enter to start");
@@ -442,7 +423,7 @@ while (isRunning)
             enemylevel++;
             //levle upp
             yourNomekopHelth = types[choiceUser].health[chosenNomekop] + level;
-            yourNomekopStats[0] = attackStats[choiceUser, chosenNomekop] + level;
+            yourNomekopStats[0] = types[choiceUser].statAttack[chosenNomekop] + level;
             yourNomekopStats[1] = defenceStats[choiceUser, chosenNomekop] + level;
             for (int i = 0; i < 17; i++)
             {
@@ -455,7 +436,7 @@ while (isRunning)
             typeEnemy = enemyType.Next(0, 17); 
             enemyRandomStat = enemyType.Next(0, 5);
             enemyNomekopHealt = types[typeEnemy].health[enemyRandomStat] + enemylevel;
-            enmeyNomekopnStats[0] = attackStats[typeEnemy, enemyRandomStat] + enemylevel;
+            enmeyNomekopnStats[0] = types[typeEnemy].statAttack[enemyRandomStat] + enemylevel;
             enmeyNomekopnStats[1] = defenceStats[typeEnemy, enemyRandomStat] + enemylevel;
         }
         else //no pokemon faints
@@ -535,14 +516,17 @@ while (isRunning)
 }
 
 
-class NomekopType(string Name, ConsoleColor Color, float[] Health)
+class NomekopType(string Name, ConsoleColor Color, float[] Health, float[] StatAttack)
 {
     // GNU GPL 3.0 LICENCE https://www.gnu.org/licenses/gpl-3.0.en.html
     // MADE BY HARRY MÅRTENSSON, THIS COMMENT MAY NOT BE REMOVED
 
     string name = Name;
     ConsoleColor color = Color;
+
     public float[] health = Health;
+    public float[] statAttack = StatAttack;
+
     public void Print(int index = 0)
     {
         ConsoleColor prevColor = Console.ForegroundColor;
