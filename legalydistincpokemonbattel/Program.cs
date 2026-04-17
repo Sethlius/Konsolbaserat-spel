@@ -115,8 +115,8 @@ string[,] nomekopAttack = { { "Hydro pump", "Watterfall", "Surf", "Water Pulse" 
                           };
 
 Items[] items = {
-    new Items("Item1", 1.25f),
-    new Items("Item2", 1.5f)
+    new Items("Item1", 1.25f), //attack item
+    new Items("Item2", 1.5f) //attack item
 };
 
 NomekopType[] types = {
