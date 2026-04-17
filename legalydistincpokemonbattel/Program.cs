@@ -2,19 +2,20 @@
 
 using System;
 
-bool isRunning = true;
-bool[] whichCoise = [false, false];
-bool enemtTurn = false;
-bool attackTurn = false;
-bool[] whatKindOfItem = [false, false];
+bool isRunning = true; //cheks if program is running
+bool[] whichCoise = [false, false]; //attack option or item option in the menue 
+bool enemtTurn = false; 
+bool attackTurn = false; //where the damage calculation is done
+bool[] whatKindOfItem = [false, false]; //item is a health item or an attack item
+bool attackItemActivated = false; //cheks wheter you have chosen an attack item
 
-int moveInMenue = 0;
-int attackMenuMove = 0;
-int enemyAtack = 0;
+int moveInMenue = 0; //move in first menue
+int attackMenuMove = 0; //move in the attack menue
+int enemyAtack = 0; //which attack enemy chose
 int level = 1;
 int enemylevel = 1;
-int attackItemChoise = 0;
-int choosItem = 0;
+int attackItemChoise = 0; //move int attack item menue
+int choosItem = 0; //move in menue for chosing attack/healt item
 
 
 int[,] attackDamage = { { 110, 80, 90, 60 }, //water type
@@ -62,7 +63,7 @@ float[,] typeChart = { { 0.5f, 0.5f, 2, 1, 1, 1, 1, 1, 2, 2, 1, 1, 0.5f, 1, 1, 1
                     };
 float yourNomekopHelth;
 float enemyNomekopHealt;
-float[] attackItemMultipliers = { 1, 1.25f, 1,5f };
+float[] attackItemMultipliers = { 1.25f, 1.5f };
 float[] yourNomekopStats = { 0, 1 }; //0 is for attackstat and 1 is for defencstat;
 float[] enmeyNomekopnStats = { 0, 1 };
 
@@ -136,7 +137,7 @@ NomekopType[] types = {
     new NomekopType("Fighting type", ConsoleColor.DarkRed, /*Health*/ [77.9f, 1, 1, 1, 1, 1], /*Attackstat*/ [108.8f, 1, 1, 1, 1, 1], /*DefenceStat*/ [79.6f, 1, 1, 1, 1, 1]) //17
 };
 
-Random enemyType = new Random();
+Random enemyType = new Random(); //gives the enemy a pokemon
 int typeEnemy = enemyType.Next(0, 17);
 int enemyRandomStat = enemyType.Next(0, 5);
 enemyNomekopHealt = types[typeEnemy].health[enemyRandomStat];
@@ -192,8 +193,6 @@ while (isRunning)
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write(menueChoice[1]);
             Console.WriteLine();
-            Console.WriteLine($"Your nomekop helth {yourNomekopHelth}");
-            Console.WriteLine($"Enemy nomekop helth {enemyNomekopHealt}");
             break;
         case 1: 
             Console.Clear();
@@ -203,10 +202,16 @@ while (isRunning)
             Console.Write(menueChoice[1]);
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine();
-            Console.WriteLine($"Your nomekop helth {yourNomekopHelth}");
-            Console.WriteLine($"Enemy nomekop helth {enemyNomekopHealt}");
             break;
 
+    }
+
+    Console.WriteLine($"Your nomekop helth {yourNomekopHelth}");
+    Console.WriteLine($"Enemy nomekop helth {enemyNomekopHealt}");
+
+    if (attackItemActivated == true)
+    {
+        Console.WriteLine($"Attakc item has been used, your multiplier is: {attackItemMultipliers[attackItemChoise]}");
     }
 
 
@@ -334,6 +339,10 @@ while (isRunning)
             Console.WriteLine(crit);
         }
         damageDelt = damageDelt * multiplierDamageRandom;
+        if (attackItemActivated == true)
+        {
+            damageDelt = damageDelt * attackItemMultipliers[attackItemChoise];
+        }
         damageDelt = damageDelt * typeChart[choiceUser, typeEnemy];
         if (typeChart[choiceUser, typeEnemy] == 0.5)
         {
@@ -427,7 +436,7 @@ while (isRunning)
         ConsoleKey noUse = Console.ReadKey(true).Key;
         damageDelt = 0;
         enemyDamage = 0;
-        attackItemChoise = 0;
+        attackItemActivated = false;
         attackTurn = false;
     }
 
@@ -484,7 +493,42 @@ while (isRunning)
 
     while (whatKindOfItem[0] == true) 
     {
-        Console.WriteLine("You are stuck here now lol :3");
+        Console.Clear();
+        for (int i = 0; i < attackItemMultipliers.Length; i++)
+        {
+            if (i == attackItemChoise)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+            }
+            Console.WriteLine(attackItemMultipliers[i]);
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        ConsoleKey itemAttackMove = Console.ReadKey(true).Key;
+
+        if (itemAttackMove == ConsoleKey.UpArrow)
+        {
+            attackItemChoise--;
+        }
+        else if (itemAttackMove == ConsoleKey.DownArrow)
+        {
+            attackItemChoise++;
+        }
+        if (attackItemChoise < 0)
+        {
+            attackItemChoise = 1;
+        }
+        else if (attackItemChoise > 1)
+        {
+            attackItemChoise = 0;
+        }
+
+        if (itemAttackMove == ConsoleKey.Enter)
+        {
+            whatKindOfItem[0] = false;
+            attackItemActivated = true;
+        }
+
     }
 
     while (whatKindOfItem[1] == true) 
