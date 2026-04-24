@@ -14,8 +14,11 @@ int attackMenuMove = 0; //move in the attack menue
 int enemyAtack = 0; //which attack enemy chose
 int level = 1;
 int enemylevel = 1;
-int attackItemChoise = 0; //move int attack item menue
+int attackItemChoise = 0; //move in attack item menue
+int healthItemsChoise = 0; //move in health items menue
 int choosItem = 0; //move in menue for chosing attack/healt item
+int ammountOfAttackItems = 3; //the amount of attackitems you have
+int ammountOfHealthItems = 3; //the amount of healt items you have
 
 
 int[,] attackDamage = { { 110, 80, 90, 60 }, //water type
@@ -74,24 +77,24 @@ string imune = "This attack has no effect on the oposing Nomekop";
 
 string[] menueChoice = { "Attack", "Items" };
 
-string[,] nomekop = { { "Average water type", "Nomekop 2", "Nomekop 3", "Nomekop 4", "Nomekop 5", "Nomekop 6" }, //water type Nomekop
-                       { "Average grass type ", "Nomekop 2", "Nomekop 3", "Nomekop 4", "Nomekop 5", "Nomekop 6" }, //grass type Nomekop
-                       { "Average fire type", "Nomekop 2", "Nomekop 3", "Nomekop 4", "Nomekop 5", "Nomekop 6" }, //fire type Nomekop
-                       { "Average electric type", "Nomekop 2", "Nomekop 3", "Nomekop 4", "Nomekop 5", "Nomekop 6" }, //electric type Nomekop
-                       { "Average bug type", "Nomekop 2", "Nomekop 3", "Nomekop 4", "Nomekop 5", "Nomekop 6" }, //bug type Nomekop
-                       { "Average flying type", "Nomekop 2", "Nomekop 3", "Nomekop 4", "Nomekop 5", "Nomekop 6" }, //flying type Nomekop
-                       { "Average poison type", "Nomekop 2", "Nomekop 3", "Nomekop 4", "Nomekop 5", "Nomekop 6" }, //poison type Nomekop
-                       { "Average normal type", "Nomekop 2", "Nomekop 3", "Nomekop 4", "Nomekop 5", "Nomekop 6" }, //normal type Nomekop
-                       { "Average rock type", "Nomekop 2", "Nomekop 3", "Nomekop 4", "Nomekop 5", "Nomekop 6" }, //rock type Nomekop
-                       { "Average ground type", "Nomekop 2", "Nomekop 3", "Nomekop 4", "Nomekop 5", "Nomekop 6" }, //ground type Nomekop
-                       { "Average steel type", "Nomekop 2", "Nomekop 3", "Nomekop 4", "Nomekop 5", "Nomekop 6" }, //steel type Nomekop
-                       { "Average ice type", "Nomekop 2", "Nomekop 3", "Nomekop 4", "Nomekop 5", "Nomekop 6" }, //ice type Nomekop
-                       { "Average dragon type", "Nomekop 2", "Nomekop 3", "Nomekop 4", "Nomekop 5", "Nomekop 6" }, //dragon type Nomekop
-                       { "Average fairy type", "Nomekop 2", "Nomekop 3", "Nomekop 4", "Nomekop 5", "Nomekop 6" }, //fairy type Nomekop
-                       { "Average dark type", "Nomekop 2", "Nomekop 3", "Nomekop 4", "Nomekop 5", "Nomekop 6" }, //dark type Nomekop
-                       { "Average ghost type", "Nomekop 2", "Nomekop 3", "Nomekop 4", "Nomekop 5", "Nomekop 6" }, //ghost type Nomekop
-                       { "Average psychich type", "Nomekop 2", "Nomekop 3", "Nomekop 4", "Nomekop 5", "Nomekop 6" }, //psychich type Nomekop
-                       { "Average fighting type", "Nomekop 2", "Nomekop 3", "Nomekop 4", "§Nomekop 5", "Nomekop 6" }  //fighting type Nomekop
+string[,] nomekop = { { "Average water type", "Wekest water type", "fastest water type", "Nomekop 4", "Nomekop 5", "Strongest water type" }, //water type Nomekop
+                       { "Average grass type ", "wekest grass type", "fastest grass type", "Nomekop 4", "Nomekop 5", "Strongest grass type" }, //grass type Nomekop
+                       { "Average fire type", "wekest fire type", "fastest grass type", "Nomekop 4", "Nomekop 5", "Strongest fire type" }, //fire type Nomekop
+                       { "Average electric type", "wekest electric type", "fastet electric type", "Nomekop 4", "Nomekop 5", "Strongest electric type" }, //electric type Nomekop
+                       { "Average bug type", "wekest bug type", "fastets bug type", "Nomekop 4", "Nomekop 5", "Strongest bug type" }, //bug type Nomekop
+                       { "Average flying type", "wekest flying type", "fastest flying type", "Nomekop 4", "Nomekop 5", "Strongest flying type" }, //flying type Nomekop
+                       { "Average poison type", "wekest poision type", "fastest poision type", "Nomekop 4", "Nomekop 5", "Strongest poision type" }, //poison type Nomekop
+                       { "Average normal type", "wekest normal type", "fastest normal type", "Nomekop 4", "Nomekop 5", "strongest normal type" }, //normal type Nomekop
+                       { "Average rock type", "wekest rock type", "fastest rcok type", "Nomekop 4", "Nomekop 5", "strongest rock type" }, //rock type Nomekop
+                       { "Average ground type", "wekest ground type", "fastest ground type", "Nomekop 4", "Nomekop 5", "strongest ground type" }, //ground type Nomekop
+                       { "Average steel type", "wekest steel type", "fastest steel type", "Nomekop 4", "Nomekop 5", "Strongest steel type" }, //steel type Nomekop
+                       { "Average ice type", "wekest ice type", "fastest ice type", "Nomekop 4", "Nomekop 5", "strongest ice type" }, //ice type Nomekop
+                       { "Average dragon type", "wekest dragon type", "fastest dargon type", "Nomekop 4", "Nomekop 5", "strongest dragon type" }, //dragon type Nomekop
+                       { "Average fairy type", "wekest fairy type", "fastets fairy type", "Nomekop 4", "Nomekop 5", "strongest fairy type" }, //fairy type Nomekop
+                       { "Average dark type", "wekest dark type", "fastest dark type", "Nomekop 4", "Nomekop 5", "strongest dark type" }, //dark type Nomekop
+                       { "Average ghost type", "wekest ghost type", "fastest ghost type", "Nomekop 4", "Nomekop 5", "strongest ghost type" }, //ghost type Nomekop
+                       { "Average psychich type", "wekest psychich type", "fastest psychich type", "Nomekop 4", "Nomekop 5", "strongest psychich type" }, //psychich type Nomekop
+                       { "Average fighting type", "wekest fighting type", "fastest fighting type", "Nomekop 4", "§Nomekop 5", "strongest fighting type" }  //fighting type Nomekop
                        };
 
 string[,] nomekopAttack = { { "Hydro pump", "Watterfall", "Surf", "Water Pulse" }, //watter attacks
@@ -114,30 +117,36 @@ string[,] nomekopAttack = { { "Hydro pump", "Watterfall", "Surf", "Water Pulse" 
                             { "Close Combat", "Submission", "Aura Sphere", "Low Sweep" } //Fighting type
                           };
 
-Items[] items = {
-    new Items("Item1", 1.25f), //attack item
-    new Items("Item2", 1.5f) //attack item
+ItemsAttack[] items = {
+    new ItemsAttack("Item1", 1.25f), //attack item
+    new ItemsAttack("Item2", 1.5f) //attack item
+};
+
+HealthItems[] healthItems =
+{
+    new HealthItems("Item1", 50),
+    new HealthItems("Item2", 75)
 };
 
 NomekopType[] types = {
-    new NomekopType("Water type",    ConsoleColor.DarkCyan, /*Health*/ [71.1f, 1f, 1f, 1f, 1f, 1f], /*Attackstat*/ [76.5f, 1, 1, 1, 1, 1], /*DefenceStat*/ [74.7f, 1, 1, 1, 1, 1]), //0
-    new NomekopType("Grass type",    ConsoleColor.DarkGreen, /*Health*/ [72.9f, 1, 1, 1, 1, 1], /*Attackstat*/ [77, 1, 1, 1, 1, 1], /*DefenceStat*/ [73.8f, 1, 1, 1, 1, 1]), //1
-    new NomekopType("Fire type",     ConsoleColor.Red, /*Health*/ [71.3f, 1, 1, 1, 1, 1 ], /*Attackstat*/ [84.8f, 1, 1, 1, 1, 1], /*DefenceStat*/ [71.4f, 1, 1, 1, 1, 1]), //2
-    new NomekopType("Electric type", ConsoleColor.Yellow, /*Health*/ [66.9f, 1, 1, 1, 1, 1], /*Attackstat*/ [75.5f, 1, 1, 1, 1, 1 ], /*DefenceStat*/ [69.3f, 1, 1, 1, 1, 1]), //3
-    new NomekopType("Bug type",      ConsoleColor.Green, /*Health*/ [56.9f, 1, 1, 1, 1, 1], /*Attackstat*/ [71, 1, 1, 1, 1, 1], /*DefenceStat*/ [70.7f, 1, 1, 1, 1, 1]), //4
-    new NomekopType("Flying type",   ConsoleColor.Blue, /*Health*/ [72.4f, 1, 1, 1, 1, 1], /*Attackstat*/ [81.6f, 1, 1, 1, 1, 1], /*DefenceStat*/ [68.4f, 1, 1, 1, 1, 1]), //5
-    new NomekopType("Poison type",   ConsoleColor.DarkMagenta, /*Health*/ [69.1f, 1, 1, 1, 1, 1], /*Attackstat*/ [74.4f, 1, 1, 1, 1, 1 ], /*DefenceStat*/ [69.5f, 1, 1, 1, 1, 1]), //6
-    new NomekopType("Normal type",   ConsoleColor.White, /*Health*/ [77.5f, 1, 1, 1, 1, 1], /*Attackstat*/ [75.6f, 1, 1, 1, 1, 1], /*DefenceStat*/ [62.4f, 1, 1, 1, 1, 1]), //7
-    new NomekopType("Rock type",     ConsoleColor.Gray, /*Health*/ [69.3f, 1, 1, 1, 1, 1], /*Attackstat*/ [91.4f, 1, 1, 1, 1, 1], /*DefenceStat*/ [102.1f, 1, 1, 1, 1, 1]), //8
-    new NomekopType("Ground type",   ConsoleColor.DarkGray, /*Health*/ [77.9f, 1, 1, 1, 1, 1], /*Attackstat*/ [91.2f, 1, 1, 1, 1, 1], /*DefenceStat*/ [88.3f, 1, 1, 1, 1, 1]), //9
-    new NomekopType("Steel type",    ConsoleColor.DarkYellow, /*Health*/ [70.5f, 1, 1, 1, 1, 1], /*Attackstat*/ [95.2f, 1, 1, 1, 1, 1], /*DefenceStat*/ [108.9f, 1, 1, 1, 1, 1]), //10
-    new NomekopType("Ice type",      ConsoleColor.Cyan, /*Health*/ [80.3f, 1, 1, 1, 1, 1], /*Attackstat*/ [88.2f, 1, 1, 1, 1, 1], /*DefenceStat*/ [79, 1, 1, 1, 1, 1]), //11
-    new NomekopType("Dragon type",   ConsoleColor.DarkBlue, /*Health*/ [88.7f, 1, 1, 1, 1, 1], /*Attackstat*/ [99.2f, 1, 1, 1, 1, 1], /*DefenceStat*/ [88.3f, 1, 1, 1, 1, 1]), //12
-    new NomekopType("Fairy type",    ConsoleColor.Magenta, /*Health*/ [67.8f, 1, 1, 1, 1, 1], /*Attackstat*/ [70, 1, 1, 1, 1, 1], /*DefenceStat*/ [74.5f, 1, 1, 1, 1, 1]), //13
-    new NomekopType("Dark type",     ConsoleColor.DarkBlue, /*Health*/ [75.1f, 1, 1, 1, 1, 1], /*Attackstat*/ [94.8f, 1, 1, 1, 1, 1], /*DefenceStat*/ [71.9f, 1, 1, 1, 1, 1]), //14
-    new NomekopType("Ghost type",    ConsoleColor.DarkMagenta, /*Health*/ [66.5f, 1, 1, 1, 1, 1], /*Attackstat*/ [78.9f, 1, 1, 1, 1, 1], /*DefenceStat*/ [78.9f, 1, 1, 1, 1, 1]), //15
-    new NomekopType("Psychich type", ConsoleColor.Magenta, /*Health*/ [75.2f, 1, 1, 1, 1, 1], /*Attackstat*/ [76.7f, 1, 1, 1, 1, 1], /*DefenceStat*/ [76.7f, 1, 1, 1, 1, 1]), //16
-    new NomekopType("Fighting type", ConsoleColor.DarkRed, /*Health*/ [77.9f, 1, 1, 1, 1, 1], /*Attackstat*/ [108.8f, 1, 1, 1, 1, 1], /*DefenceStat*/ [79.6f, 1, 1, 1, 1, 1]) //17
+    new NomekopType("Water type",    ConsoleColor.DarkCyan, /*Health*/ [71.1f, 20f, 61f, 1f, 1f, 100f], /*Attackstat*/ [76.5f, 10f, 123f, 1, 1, 160f], /*DefenceStat*/ [74.7f, 55f, 60f, 1, 1, 97f]), //0
+    new NomekopType("Grass type",    ConsoleColor.DarkGreen, /*Health*/ [72.9f, 40f, 60f, 1, 1, 59f], /*Attackstat*/ [77, 27f, 50f, 1, 1, 181f], /*DefenceStat*/ [73.8f, 60f, 70f, 1, 1, 131f]), //1
+    new NomekopType("Fire type",     ConsoleColor.Red, /*Health*/ [71.3f, 50f, 105f, 1, 1, 100f], /*Attackstat*/ [84.8f, 30f, 160f, 1, 1, 180f], /*DefenceStat*/ [71.4f, 55f, 55f, 1, 1, 160f]), //2
+    new NomekopType("Electric type", ConsoleColor.Yellow, /*Health*/ [66.9f, 40f, 80f, 1, 1, 100f], /*Attackstat*/ [75.5f, 30f, 100f, 1, 1, 150f], /*DefenceStat*/ [69.3f, 50f, 50f, 1, 1, 120f]), //3
+    new NomekopType("Bug type",      ConsoleColor.Green, /*Health*/ [56.9f, 20f, 61f, 1, 1, 80f], /*Attackstat*/ [71, 10f, 90f, 1, 1, 185f], /*DefenceStat*/ [70.7f, 230f, 45f, 1, 1, 115f]), //4
+    new NomekopType("Flying type",   ConsoleColor.Blue, /*Health*/ [72.4f, 40f, 80f, 1, 1, 105f], /*Attackstat*/ [81.6f, 20f, 135f, 1, 1, 180f], /*DefenceStat*/ [68.4f, 30f, 85f, 1, 1, 100f]), //5
+    new NomekopType("Poison type",   ConsoleColor.DarkMagenta, /*Health*/ [69.1f, 45f, 65f, 1, 1, 65f], /*Attackstat*/ [74.4f, 25f, 150f, 1, 1, 150f], /*DefenceStat*/ [69.5f, 50f, 40f, 1, 1, 40f]), //6
+    new NomekopType("Normal type",   ConsoleColor.White, /*Health*/ [77.5f, 100f, 65f, 1, 1, 150f], /*Attackstat*/ [75.6f, 5f, 136f, 1, 1, 160], /*DefenceStat*/ [62.4f, 5f, 94f, 1, 1, 100f]), //7
+    new NomekopType("Rock type",     ConsoleColor.Gray, /*Health*/ [69.3f, 48f, 90f, 1, 1, 97f], /*Attackstat*/ [91.4f, 35f, 120f, 1, 1, 165f], /*DefenceStat*/ [102.1f, 42f, 80f, 1, 1, 60]), //8
+    new NomekopType("Ground type",   ConsoleColor.DarkGray, /*Health*/ [77.9f, 40f, 35f, 1, 1, 108f], /*Attackstat*/ [91.2f, 40f, 100, 1, 1, 170f], /*DefenceStat*/ [88.3f, 55f, 50f, 1, 1, 115f]), //9
+    new NomekopType("Steel type",    ConsoleColor.DarkYellow, /*Health*/ [70.5f, 57f, 92f, 1, 1, 97f], /*Attackstat*/ [95.2f, 24f, 150, 1, 1, 157f], /*DefenceStat*/ [108.9f, 86f, 115f, 1, 1, 127f]), //10
+    new NomekopType("Ice type",      ConsoleColor.Cyan, /*Health*/ [80.3f, 30f, 56f, 1, 1, 125f], /*Attackstat*/ [88.2f, 25f, 80f, 1, 1, 170f], /*DefenceStat*/ [79, 35f, 114f, 1, 1, 100f]), //11
+    new NomekopType("Dragon type",   ConsoleColor.DarkBlue, /*Health*/ [88.7f, 40f, 70f, 1, 1, 90f], /*Attackstat*/ [99.2f, 30f, 110f, 1, 1, 110f], /*DefenceStat*/ [88.3f, 35f, 75f, 1, 1, 150f]), //12
+    new NomekopType("Fairy type",    ConsoleColor.Magenta, /*Health*/ [67.8f, 50f, 92f, 1, 1, 50f], /*Attackstat*/ [70, 20f, 132f, 1, 1, 160f], /*DefenceStat*/ [74.5f, 40f, 100f, 1, 1, 110f]), //13
+    new NomekopType("Dark type",     ConsoleColor.DarkBlue, /*Health*/ [75.1f, 40f, 80f, 1, 1, 100f], /*Attackstat*/ [94.8f, 28f, 120f, 1, 1, 164f], /*DefenceStat*/ [71.9f, 28f, 80f, 1, 1, 150f]), //14
+    new NomekopType("Ghost type",    ConsoleColor.DarkMagenta, /*Health*/ [66.5f, 50f, 100f, 1, 1, 64f], /*Attackstat*/ [78.9f, 30f, 85f, 1, 1, 165f], /*DefenceStat*/ [78.9f, 53f, 80f, 1, 1, 75f]), //15
+    new NomekopType("Psychich type", ConsoleColor.Magenta, /*Health*/ [75.2f, 25f, 50f, 1, 1, 106f], /*Attackstat*/ [76.7f, 20f, 95f, 1, 1, 190f], /*DefenceStat*/ [76.7f, 15f, 90f, 1, 1, 100f]), //16
+    new NomekopType("Fighting type", ConsoleColor.DarkRed, /*Health*/ [77.9f, 35f, 71f, 1, 1, 68f], /*Attackstat*/ [108.8f, 30f, 137f, 1, 1, 165f], /*DefenceStat*/ [79.6f, 35f, 37f, 1, 1, 95f]) //17
 };
 
 Random enemyType = new Random(); //gives the enemy a pokemon
@@ -162,7 +171,10 @@ types[choiceUser].Print(choiceUser);
 
 for (int i = 0; i <= 5 ; i++)
 {
-    Console.WriteLine($"{nomekop[choiceUser, i]}: \n attack stat: {types[choiceUser].statAttack[i]} \n defence stat: {types[choiceUser].statDefence[i]} \n hp: {types[choiceUser].health[i]} \n");
+    Console.WriteLine($"{nomekop[choiceUser, i]}: " +
+        $"\n attack stat: {types[choiceUser].statAttack[i]}" +
+        $" \n defence stat: {types[choiceUser].statDefence[i]} " +
+        $"\n hp: {types[choiceUser].health[i]} \n");
 }
 
 string nomekopChoicse = Console.ReadLine(); //for getting stats
@@ -211,6 +223,9 @@ while (isRunning)
 
     Console.WriteLine($"Your nomekop helth {yourNomekopHelth}");
     Console.WriteLine($"Enemy nomekop helth {enemyNomekopHealt}");
+
+    Console.WriteLine($"attack items left {ammountOfAttackItems}");
+    Console.WriteLine($"health items left {ammountOfHealthItems}");
 
     if (attackItemActivated == true)
     {
@@ -465,6 +480,12 @@ while (isRunning)
                 break;
         }
 
+        if (ammountOfHealthItems <= 0 && ammountOfAttackItems <= 0) //makse sure you actualy have items
+        {
+            whichCoise[1] = false;
+            break;
+        }
+
         ConsoleKey itemsMenuMove = Console.ReadKey(true).Key;
 
         if (itemsMenuMove == ConsoleKey.UpArrow)
@@ -489,8 +510,16 @@ while (isRunning)
 
         if (itemsMenuMove == ConsoleKey.Enter)
         {
-            whatKindOfItem[choosItem] = true;
-            whichCoise[1] = false;
+            if (ammountOfAttackItems > 0 && choosItem == 0) //makse sure you can only get attakcitems if you actualy have them
+            {
+                whatKindOfItem[0] = true;
+            }
+            if (ammountOfHealthItems > 0 && choosItem == 1) // maske sure that you can only get health items if you actualy have them.
+            {
+                whatKindOfItem[1] = true;
+            }
+
+                whichCoise[1] = false;
         }
     }
 
@@ -528,6 +557,7 @@ while (isRunning)
 
         if (itemAttackMove == ConsoleKey.Enter)
         {
+            ammountOfAttackItems--;
             whatKindOfItem[0] = false;
             attackItemActivated = true;
         }
@@ -536,7 +566,44 @@ while (isRunning)
 
     while (whatKindOfItem[1] == true) 
     {
-        Console.WriteLine("You are stuck here now lol :3");
+        Console.Clear();
+
+        for (int i = 0; i < 2;i++)
+        {
+            if (i == healthItemsChoise)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+            }
+            Console.WriteLine($"{healthItems[i].NameItems}, + {healthItems[i].HealthRegained} hp");
+            Console.ForegroundColor = ConsoleColor.White;
+        }
+
+        ConsoleKey itemHealthMove = Console.ReadKey(true).Key;
+
+        if (itemHealthMove == ConsoleKey.UpArrow)
+        {
+            healthItemsChoise--;
+        }
+        else if (itemHealthMove == ConsoleKey.DownArrow)
+        {
+            healthItemsChoise++;
+        }
+        if (healthItemsChoise < 0)
+        {
+            healthItemsChoise = 1;
+        }
+        else if (healthItemsChoise > 1)
+        {
+            healthItemsChoise = 0;
+        }
+
+        if (itemHealthMove == ConsoleKey.Enter)
+        {
+            ammountOfHealthItems--;
+            yourNomekopHelth += healthItems[healthItemsChoise].HealthRegained;
+            whatKindOfItem[1] = false;
+        }
+        
     }
 
 }
@@ -562,8 +629,14 @@ class NomekopType(string Name, ConsoleColor Color, float[] Health, float[] StatA
     }
 }
 
-class Items(string ItemName, float AttackItemMultipliers)
+class ItemsAttack(string ItemName, float AttackItemMultipliers)
 {
     public string itemName = ItemName;
     public float attackItemMultipliers = AttackItemMultipliers;
+}
+
+class HealthItems(string NameItems, float HealthRegained)
+{
+    public string NameItems = NameItems;
+    public float HealthRegained = HealthRegained;
 }
