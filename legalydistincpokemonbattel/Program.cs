@@ -118,14 +118,14 @@ string[,] nomekopAttack = { { "Hydro pump", "Watterfall", "Surf", "Water Pulse" 
                           };
 
 ItemsAttack[] items = {
-    new ItemsAttack("Item1", 1.25f), //attack item
-    new ItemsAttack("Item2", 1.5f) //attack item
+    new ItemsAttack("piss of inator (makse your nomekop angry so that it attacks more agresevly)", 1.25f), //attack item
+    new ItemsAttack("precis strikes inator (makse your nomekop hit the enemy in a wekspot, increses dagame)", 1.5f) //attack item
 };
 
 HealthItems[] healthItems =
 {
-    new HealthItems("Item1", 50),
-    new HealthItems("Item2", 75)
+    new HealthItems("small health spray (a small bottel that when given to a nomekop helas 50 hp)", 50),
+    new HealthItems("big health spray (a big bottel that when given to a nomekop it heals 75 hp", 75)
 };
 
 NomekopType[] types = {
@@ -176,6 +176,7 @@ for (int i = 0; i <= 5 ; i++)
         $" \n defence stat: {types[choiceUser].statDefence[i]} " +
         $"\n hp: {types[choiceUser].health[i]} \n");
 }
+Console.WriteLine("\nchose a number betwen 0-5 to continue (0 is the top option while 5 is the bottom one");
 
 string nomekopChoicse = Console.ReadLine(); //for getting stats
 int chosenNomekop = int.Parse(nomekopChoicse);
