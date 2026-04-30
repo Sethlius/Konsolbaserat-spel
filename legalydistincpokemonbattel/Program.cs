@@ -12,8 +12,8 @@ bool attackItemActivated = false; //cheks wheter you have chosen an attack item
 int moveInMenue = 0; //move in first menue
 int attackMenuMove = 0; //move in the attack menue
 int enemyAtack = 0; //which attack enemy chose
-int level = 1;
-int enemylevel = 1;
+int level = 5;
+int enemylevel = 5;
 int attackItemChoise = 0; //move in attack item menue
 int healthItemsChoise = 0; //move in health items menue
 int choosItem = 0; //move in menue for chosing attack/healt item
@@ -340,9 +340,6 @@ while (isRunning)
 
     while (attackTurn == true)
     {
-        Random randomDamageRange = new Random();
-        int randomMultiplier = randomDamageRange.Next(75, 125);
-        float multiplierDamageRandom = randomMultiplier / 100;
         Console.Clear();
         //damage calculation (based on the one actualy used in Nomekop, just simplified)
         damageDelt = 2 * level;
@@ -351,13 +348,14 @@ while (isRunning)
         damageDelt = damageDelt * yourNomekopStats[0] / enmeyNomekopnStats[1];
         damageDelt = damageDelt / 50;
         damageDelt = 2 + damageDelt * weatherConditions[weatherConditionRandom];
+        Console.WriteLine(damageDelt);
         Console.WriteLine($"You used {nomekopAttack[choiceUser, attackMenuMove]}");
         if (criticalHit > 8)
         {
             damageDelt *= critDamage;
             Console.WriteLine(crit);
         }
-        damageDelt = damageDelt * multiplierDamageRandom;
+        
         if (attackItemActivated == true)
         {
             damageDelt = damageDelt * items[attackItemChoise].attackItemMultipliers;
@@ -371,19 +369,19 @@ while (isRunning)
         {
             Console.WriteLine(superEfective);
         }
-        else if (typeChart[choiceUser, typeEnemy] == 0)
+        else if (typeChart[choiceUser, typeEnemy] == 0.25)
         {
             Console.WriteLine(imune);
         }
 
         Console.WriteLine(" ");
-
-        enemyNomekopHealt -= damageDelt;
+        
+        enemyNomekopHealt = enemyNomekopHealt - damageDelt;
+        
 
         if (enemyNomekopHealt > 0)
         {
-            randomMultiplier = randomDamageRange.Next(75, 125);
-            multiplierDamageRandom = randomMultiplier / 100;
+            ;
             //enemys damage calculation
             enemyDamage = 2 * enemylevel;
             enemyDamage = enemyDamage / 5 + 2;
@@ -397,7 +395,7 @@ while (isRunning)
                 enemyDamage *= enemyCritHit;
                 Console.WriteLine(crit);
             }
-            enemyDamage = enemyDamage * multiplierDamageRandom;
+            
             enemyDamage = enemyDamage * typeChart[typeEnemy, choiceUser];
             if (typeChart[typeEnemy, choiceUser] == 0.5)
             {
